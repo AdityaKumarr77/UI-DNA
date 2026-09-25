@@ -26,14 +26,14 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
 
   return (
     <div
+      className="comparison-page-wrapper"
       style={{
         display: 'flex',
         flexDirection: 'column',
         gap: '28px',
         width: '100%',
         maxWidth: '1280px',
-        margin: '0 auto',
-        padding: '24px'
+        margin: '0 auto'
       }}
     >
       {/* Neutral Scientific Protocol Header */}
@@ -74,7 +74,7 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
           </p>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text-muted)' }}>
               OVERALL GENETIC DIVERGENCE
@@ -95,13 +95,7 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
       </div>
 
       {/* Dual Visual Fingerprints Section */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-          gap: '24px'
-        }}
-      >
+      <div className="comparison-dual-grid">
         {/* Specimen A */}
         <div
           className="lab-panel tech-corners"
@@ -119,12 +113,12 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
             </span>
           </div>
 
-          <div style={{ width: '320px', height: '320px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '100%', maxWidth: '280px', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <DNAVisualizer
               traits={dnaA.traits}
               dnaId={dnaA.id}
               classification={dnaA.classification}
-              size={300}
+              size={280}
               interactive={false}
               showLabels={false}
             />
@@ -164,12 +158,12 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
             </span>
           </div>
 
-          <div style={{ width: '320px', height: '320px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '100%', maxWidth: '280px', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <DNAVisualizer
               traits={dnaB.traits}
               dnaId={dnaB.id}
               classification={dnaB.classification}
-              size={300}
+              size={280}
               interactive={false}
               showLabels={false}
             />
@@ -194,15 +188,9 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
       </div>
 
       {/* Visual Difference Map (Radar) & Trait Comparison Ladder */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1.2fr 1fr',
-          gap: '24px'
-        }}
-      >
+      <div className="comparison-details-grid">
         {/* Trait Comparison Ladder */}
-        <div className="lab-panel" style={{ padding: '20px' }}>
+        <div className="lab-panel" style={{ padding: '18px' }}>
           <div
             style={{
               fontFamily: 'var(--font-mono)',
@@ -215,14 +203,14 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
             }}
           >
             <span>GENOME TRAIT</span>
-            <div style={{ display: 'flex', gap: '32px' }}>
-              <span style={{ color: 'var(--accent-cyan)' }}>SPECIMEN A</span>
-              <span style={{ color: 'var(--accent-emerald)' }}>SPECIMEN B</span>
-              <span style={{ width: '40px', textAlign: 'right' }}>DELTA</span>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <span style={{ color: 'var(--accent-cyan)' }}>A</span>
+              <span style={{ color: 'var(--accent-emerald)' }}>B</span>
+              <span style={{ width: '38px', textAlign: 'right' }}>Δ</span>
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {TRAIT_DEFINITIONS.map((def) => {
               const valA = dnaA.traits[def.id] ?? 50;
               const valB = dnaB.traits[def.id] ?? 50;
@@ -241,20 +229,20 @@ export default function ComparisonMatrix({ dnaA, dnaB }) {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: '#ffffff' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#ffffff' }}>
                       {def.name}
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '28px', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>
-                      <span style={{ color: 'var(--accent-cyan)', fontWeight: 700, width: '28px', textAlign: 'right' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>
+                      <span style={{ color: 'var(--accent-cyan)', fontWeight: 700, width: '24px', textAlign: 'right' }}>
                         {valA}
                       </span>
-                      <span style={{ color: 'var(--border-subtle)' }}>─────────</span>
-                      <span style={{ color: 'var(--accent-emerald)', fontWeight: 700, width: '28px' }}>
+                      <span style={{ color: 'var(--border-subtle)', fontSize: '10px' }}>→</span>
+                      <span style={{ color: 'var(--accent-emerald)', fontWeight: 700, width: '24px' }}>
                         {valB}
                       </span>
                       <span
                         style={{
-                          width: '40px',
+                          width: '38px',
                           textAlign: 'right',
                           color: delta === 0 ? 'var(--text-muted)' : (delta > 0 ? 'var(--accent-emerald)' : 'var(--accent-cyan)'),
                           fontSize: '11px',

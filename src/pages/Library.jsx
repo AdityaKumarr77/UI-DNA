@@ -49,10 +49,10 @@ export default function Library({
 
   return (
     <div
+      className="library-page-container"
       style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '32px 24px',
         maxWidth: '1360px',
         margin: '0 auto',
         width: '100%',
@@ -131,7 +131,8 @@ export default function Library({
             padding: '6px 12px',
             borderRadius: '4px',
             border: '1px solid var(--border-subtle)',
-            minWidth: '260px'
+            minWidth: 'min(100%, 240px)',
+            flex: 1
           }}
         >
           <Search size={14} color="var(--text-muted)" />
@@ -153,7 +154,7 @@ export default function Library({
         </div>
 
         {/* Filter Category & Sort Toggles */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', gap: '4px', background: 'rgba(0, 0, 0, 0.3)', padding: '2px', borderRadius: '4px' }}>
             {['all', 'custom', 'presets'].map((cat) => (
               <button
@@ -202,13 +203,7 @@ export default function Library({
       </div>
 
       {/* Library Grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '20px'
-        }}
-      >
+      <div className="library-grid">
         {filtered.map((item) => {
           const isActive = activeDNA && activeDNA.id === item.id;
 

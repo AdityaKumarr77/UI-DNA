@@ -406,31 +406,306 @@
   flex-direction: column;
 }
 
-/* Responsive Rules */
-@media (max-width: 1100px) {
-  .lab-workspace {
-    grid-template-columns: 280px 1fr;
-    grid-template-rows: 1fr auto;
+/* Mobile Tab Bar & Workstation Layout */
+.lab-workspace-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  position: relative;
+}
+
+.lab-mobile-tabs-bar {
+  display: none;
+  height: 44px;
+  background: rgba(8, 12, 18, 0.95);
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 0 10px;
+  align-items: center;
+  gap: 6px;
+  z-index: 15;
+  overflow-x: auto;
+}
+
+.lab-mobile-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(14, 20, 30, 0.6);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.lab-mobile-tab-btn.active {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+.mobile-menu-toggle-btn {
+  display: none;
+}
+
+/* Layout helper classes for responsive grids */
+.analyzer-grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(300px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.comparison-page-wrapper {
+  padding: 24px;
+}
+
+.comparison-dual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
+}
+
+.comparison-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
+}
+
+.library-page-container {
+  padding: 32px 24px;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 20px;
+}
+
+.compare-selector-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 24px;
+}
+
+.export-modal-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Responsive Rules & Mobile Adjustability */
+@media (max-width: 900px) {
+  .lab-workspace-wrapper {
+    height: calc(100vh - 60px);
   }
-  .lab-right-panel {
+
+  .lab-mobile-tabs-bar {
+    display: flex;
+  }
+
+  .desktop-view-toggle {
     display: none;
+  }
+
+  .desktop-collapse-btn {
+    display: none;
+  }
+
+  .lab-workspace {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+    height: calc(100% - 44px);
+    overflow: hidden;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Controlled Panel Visibility by Mobile Active Tab */
+  .mobile-view-dna .lab-left-panel,
+  .mobile-view-dna .lab-right-panel {
+    display: none !important;
+  }
+  .mobile-view-dna .lab-center-panel {
+    display: flex !important;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .mobile-view-simulation .lab-left-panel,
+  .mobile-view-simulation .lab-right-panel {
+    display: none !important;
+  }
+  .mobile-view-simulation .lab-center-panel {
+    display: flex !important;
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .mobile-view-rack .lab-center-panel,
+  .mobile-view-rack .lab-right-panel {
+    display: none !important;
+  }
+  .mobile-view-rack .lab-left-panel {
+    display: flex !important;
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .mobile-view-inspector .lab-left-panel,
+  .mobile-view-inspector .lab-center-panel {
+    display: none !important;
+  }
+  .mobile-view-inspector .lab-right-panel {
+    display: flex !important;
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .center-stage-container {
+    min-height: 280px;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .lab-bottom-timeline {
+    height: 84px;
+    flex-shrink: 0;
+  }
+
+  .timeline-track {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .analyzer-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .lab-workspace {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    height: auto;
-    overflow-y: auto;
-  }
-  .lab-left-panel {
-    max-height: 380px;
-  }
-  .center-stage-container {
-    min-height: 480px;
-  }
   .nav-tabs {
     display: none;
+  }
+
+  .mobile-menu-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-btn-hide-mobile {
+    display: none;
+  }
+
+  .lab-modal-overlay {
+    padding: 8px;
+  }
+
+  .lab-modal-card {
+    max-height: 96vh;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  .comparison-page-wrapper {
+    padding: 16px 12px;
+  }
+
+  .comparison-dual-grid,
+  .comparison-details-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .library-page-container {
+    padding: 16px 12px;
+  }
+
+  .library-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .compare-selector-bar {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+
+  .export-modal-header {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .export-modal-header .export-tab-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 580px) {
+  .dev-chip-badge {
+    display: none;
+  }
+
+  .hide-on-mobile-sm {
+    display: none;
+  }
+
+  .brand-title {
+    font-size: 16px;
+  }
+
+  .lab-header {
+    padding: 0 12px;
+  }
+
+  .dna-badge-pill {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .comparison-page-wrapper {
+    padding: 12px 8px;
+  }
+
+  .library-page-container {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hide-on-mobile-xs {
+    display: none;
+  }
+
+  .lab-mobile-tab-btn span {
+    font-size: 10px;
+  }
+
+  .lab-mobile-tab-btn {
+    padding: 5px 6px;
+    gap: 4px;
   }
 }

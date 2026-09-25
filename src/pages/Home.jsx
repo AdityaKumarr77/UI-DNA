@@ -192,10 +192,10 @@ export default function Home({ onNavigate, onLoadPreset }) {
         <div
           className="lab-panel tech-corners"
           style={{
-            padding: '32px',
+            padding: 'clamp(18px, 4vw, 32px)',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '32px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: '24px',
             alignItems: 'center',
             background: 'linear-gradient(135deg, rgba(14, 20, 32, 0.8) 0%, rgba(8, 12, 18, 0.95) 100%)'
           }}
@@ -290,7 +290,7 @@ export default function Home({ onNavigate, onLoadPreset }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
             gap: '20px'
           }}
         >

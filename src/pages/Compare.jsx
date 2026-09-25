@@ -23,15 +23,10 @@ export default function Compare({ activeDNA, library = [], initialTargetDNA = nu
     <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
       {/* Selector Toolbar */}
       <div
+        className="compare-selector-bar"
         style={{
           background: 'rgba(8, 12, 18, 0.85)',
-          borderBottom: '1px solid var(--border-hairline)',
-          padding: '14px 24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '20px',
-          flexWrap: 'wrap'
+          borderBottom: '1px solid var(--border-hairline)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

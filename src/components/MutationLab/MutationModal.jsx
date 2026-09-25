@@ -55,12 +55,14 @@ export default function MutationModal({
         {/* Header */}
         <div
           style={{
-            padding: '16px 24px',
+            padding: '14px clamp(14px, 3vw, 24px)',
             borderBottom: '1px solid var(--border-hairline)',
             background: 'rgba(12, 18, 28, 0.9)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '10px'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -188,10 +190,10 @@ export default function MutationModal({
         {/* 3 Evolutionary Possibilities Grid */}
         <div
           style={{
-            padding: '24px',
+            padding: 'clamp(14px, 3vw, 24px)',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '20px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+            gap: '16px',
             overflowY: 'auto'
           }}
         >

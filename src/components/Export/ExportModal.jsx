@@ -89,29 +89,36 @@ export default function ExportModal({
       >
         {/* Modal Header */}
         <div
+          className="export-modal-header"
           style={{
-            padding: '16px 24px',
             borderBottom: '1px solid var(--border-hairline)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
             background: 'rgba(12, 18, 28, 0.9)'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Share2 size={18} color="var(--accent-cyan)" />
-            <h2 style={{ fontSize: '17px', color: '#ffffff', fontWeight: 700 }}>
-              Export & Disseminate DNA Specimen
-            </h2>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Share2 size={18} color="var(--accent-cyan)" />
+              <h2 style={{ fontSize: '16px', color: '#ffffff', fontWeight: 700 }}>
+                Export DNA Specimen
+              </h2>
+            </div>
+
+            <button
+              onClick={onClose}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '4px' }}
+            >
+              <X size={18} />
+            </button>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="export-tab-buttons" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
             {['card', 'json', 'import'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 style={{
-                  padding: '5px 12px',
+                  flex: 1,
+                  padding: '6px 10px',
                   borderRadius: '4px',
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
@@ -120,23 +127,18 @@ export default function ExportModal({
                   border: activeTab === tab ? '1px solid var(--accent-cyan)' : '1px solid transparent',
                   background: activeTab === tab ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.04)',
                   color: activeTab === tab ? '#ffffff' : 'var(--text-secondary)',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  textAlign: 'center'
                 }}
               >
-                {tab === 'card' ? 'Share Card' : tab === 'json' ? 'JSON Payload' : 'Import DNA'}
+                {tab === 'card' ? 'Share Card' : tab === 'json' ? 'JSON' : 'Import'}
               </button>
             ))}
-            <button
-              onClick={onClose}
-              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '4px' }}
-            >
-              <X size={18} />
-            </button>
           </div>
         </div>
 
         {/* Modal Body */}
-        <div style={{ padding: '24px', overflowY: 'auto', maxHeight: '70vh' }}>
+        <div style={{ padding: '16px', overflowY: 'auto', maxHeight: '70vh' }}>
           {/* TAB 1: VISUAL SHARE CARD */}
           {activeTab === 'card' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>

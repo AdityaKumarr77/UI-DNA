@@ -24,21 +24,26 @@ export default function DNAVisualizer({
     <div
       style={{
         position: 'relative',
-        width: size,
-        height: size,
-        maxWidth: '100%',
+        width: '100%',
+        maxWidth: `${size}px`,
+        aspectRatio: '1 / 1',
         maxHeight: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        userSelect: 'none'
+        userSelect: 'none',
+        margin: '0 auto'
       }}
     >
       <svg
         viewBox={`0 0 ${size} ${size}`}
-        width={size}
-        height={size}
-        style={{ overflow: 'visible', filter: 'drop-shadow(0 0 30px rgba(0, 242, 254, 0.12))' }}
+        style={{
+          width: '100%',
+          height: '100%',
+          maxHeight: '100%',
+          overflow: 'visible',
+          filter: 'drop-shadow(0 0 30px rgba(0, 242, 254, 0.12))'
+        }}
       >
         <defs>
           <filter id={`dna-glow-${filterId}`} x="-20%" y="-20%" width="140%" height="140%">

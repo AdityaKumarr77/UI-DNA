@@ -10,12 +10,12 @@ export default function DNAHelixHero({ interactive = true }) {
     let animationFrameId;
 
     let width = (canvas.width = canvas.parentElement?.clientWidth || 700);
-    let height = (canvas.height = 360);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || (window.innerWidth < 600 ? 260 : 360));
 
     const handleResize = () => {
       if (!canvas || !canvas.parentElement) return;
       width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = 360;
+      height = canvas.height = canvas.parentElement.clientHeight || (window.innerWidth < 600 ? 260 : 360);
     };
 
     window.addEventListener('resize', handleResize);
@@ -33,7 +33,17 @@ export default function DNAHelixHero({ interactive = true }) {
       targetSpeed = 0.012 + (mouseX / width) * 0.035;
     };
 
+    const onTouchMove = (e) => {
+      if (!interactive || !e.touches || !e.touches[0]) return;
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.touches[0].clientX - rect.left;
+      mouseY = e.touches[0].clientY - rect.top;
+      targetSpeed = 0.012 + (mouseX / width) * 0.035;
+    };
+
     canvas.addEventListener('mousemove', onMouseMove);
+    canvas.addEventListener('touchmove', onTouchMove, { passive: true });
+    canvas.addEventListener('touchstart', onTouchMove, { passive: true });
 
     // Particle nodes for ambient biological suspension
     const particles = Array.from({ length: 32 }, () => ({
@@ -180,11 +190,13 @@ export default function DNAHelixHero({ interactive = true }) {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
       canvas.removeEventListener('mousemove', onMouseMove);
+      canvas.removeEventListener('touchmove', onTouchMove);
+      canvas.removeEventListener('touchstart', onTouchMove);
     };
   }, [interactive]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '360px', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', height: 'clamp(260px, 40vw, 360px)', overflow: 'hidden' }}>
       <canvas
         ref={canvasRef}
         style={{

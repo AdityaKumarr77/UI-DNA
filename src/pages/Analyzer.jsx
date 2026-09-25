@@ -134,14 +134,7 @@ export default function Analyzer({ currentTraits, onApplySynthesizedDNA, onNavig
       </div>
 
       {/* Main Analyzer Body & Real-Time Preview */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.8fr) minmax(320px, 1fr)',
-          gap: '24px',
-          alignItems: 'start'
-        }}
-      >
+      <div className="analyzer-grid-layout">
         {/* Left: Active Mode Analyzer Panel */}
         <div>
           {mode === 'manual' ? (
@@ -159,15 +152,13 @@ export default function Analyzer({ currentTraits, onApplySynthesizedDNA, onNavig
 
         {/* Right: Live Synthesized DNA Fingerprint Specimen */}
         <div
-          className="lab-panel tech-corners"
+          className="lab-panel tech-corners analyzer-preview-sticky"
           style={{
-            padding: '24px',
+            padding: '20px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '16px',
-            position: 'sticky',
-            top: '84px'
+            gap: '16px'
           }}
         >
           <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -179,7 +170,7 @@ export default function Analyzer({ currentTraits, onApplySynthesizedDNA, onNavig
             </span>
           </div>
 
-          <div style={{ width: '320px', height: '320px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '100%', maxWidth: '300px', aspectRatio: '1 / 1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <DNAVisualizer
               traits={draftTraits}
               dnaId={synthesizedId}
