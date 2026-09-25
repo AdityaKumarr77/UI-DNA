@@ -42,9 +42,10 @@ export default function EvolutionTimeline({
       <div className="timeline-track">
         {history.map((ver, index) => {
           const isActive = ver.version === currentVersion;
+          const uniqueKey = `${ver.id || 'gen'}-v${ver.version}-${index}`;
 
           return (
-            <React.Fragment key={ver.version || index}>
+            <React.Fragment key={uniqueKey}>
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
