@@ -73,45 +73,9 @@ Every interface profile encodes 12 genetic dimensions ($0 - 100$), each featurin
 
 ---
 
-## 🛠️ Tech Stack
 
-* **Framework**: React 19 + Vite
-* **Styling**: Vanilla CSS (Futuristic Scientific Laboratory Design System)
-* **Animations**: Framer Motion + Canvas Particles + Canvas Confetti
-* **Icons**: Lucide React
-* **Data Visualization**: Recharts (Genetic Topology Radar)
-* **Persistence**: LocalStorage
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-* Node.js (v18 or higher recommended)
-* npm
-
-### Installation & Run
-
-```bash
-# Clone the repository
-git clone https://github.com/AdityaKumarr77/UI-DNA.git
-
-# Navigate into project directory
-cd UI-DNA
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-```
-
----
 
 ## 📜 License & Copyright
 
 Copyright © 2026 **UI DNA**.  
-Developed by: **Aditya Kumar Jha** ([@AdityaKumarr77](https://github.com/AdityaKumarr77))
+Developed by: **Aditya Kumar Jha** ([@AdityaKumarr77]
